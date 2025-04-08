@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import landingPage.pageobjects.LandingPage;
 
 public class StandAloneTest {
 
@@ -28,7 +29,9 @@ public class StandAloneTest {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 		driver.get("https://rahulshettyacademy.com/client");
-
+ 
+		LandingPage landingpage=new LandingPage(driver);
+		
 		driver.findElement(By.id("userEmail")).sendKeys("sudhanshu729@gmail.com");
 		driver.findElement(By.id("userPassword")).sendKeys("S9935759084@m");
 		driver.findElement(By.id("login")).click();
