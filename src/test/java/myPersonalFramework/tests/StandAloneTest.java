@@ -1,4 +1,4 @@
-package MyPersonalFramework;
+package myPersonalFramework.tests;
 
 import static org.testng.Assert.assertTrue;
 
@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import landingPage.pageobjects.LandingPage;
+import myPersonalFramework.pageobjects.LandingPage;
 
 public class StandAloneTest {
 

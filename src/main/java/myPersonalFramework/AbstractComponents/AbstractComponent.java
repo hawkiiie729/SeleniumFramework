@@ -1,4 +1,4 @@
-package landingPage.AbstractComponents;
+package myPersonalFramework.AbstractComponents;
 
 import java.time.Duration;
 
@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import landingPage.pageobjects.CartPage;
+import myPersonalFramework.pageobjects.CartPage;
+import myPersonalFramework.pageobjects.OrderPage;
 
 public class AbstractComponent {
 
@@ -28,16 +29,32 @@ public class AbstractComponent {
 	@FindBy(css = "[routerlink*='cart']")
 	WebElement cartHeader; // created a webelement by which we can access any element in the header section
 
+	@FindBy(css = "[routerlink*='myorders']")
+	WebElement orderHeader;
+
 	public void waitForElementToAppear(By findBy) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
 	}
 
+	public void waitForWebElementToAppear(WebElement findBy) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(findBy));
+	}
+
 	public CartPage goToCartPage() {
-		
+
 		cartHeader.click();
 		CartPage cartPage = new CartPage(driver);
-		return cartPage;//encapsulating object creation
+		return cartPage;// encapsulating object creation
+
+	}
+	
+	public OrderPage goToOrdersPage() {
+
+		orderHeader.click();
+		OrderPage orderPage = new OrderPage(driver);
+		return orderPage;// encapsulating object creation
 
 	}
 

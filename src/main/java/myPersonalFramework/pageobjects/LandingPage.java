@@ -1,14 +1,13 @@
-package landingPage.pageobjects;
+package myPersonalFramework.pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import landingPage.AbstractComponents.AbstractComponent;
+import myPersonalFramework.AbstractComponents.AbstractComponent;
 
-//a page object should have only elements and action menthods ,no test data
+//a page object should have only elements and action methods ,no test data
 public class LandingPage extends AbstractComponent {
 
 	WebDriver driver;// this driver variable is the local driver
@@ -36,6 +35,11 @@ public class LandingPage extends AbstractComponent {
 
 	@FindBy(id = "login")
 	WebElement loginButton;
+	//.ng-tns-c4-5.ng-star-inserted.ng-trigger.ng-trigger-flyInOut.ngx-toastr.toast-error
+	@FindBy(css="[class*='flyInOut']")
+	WebElement errorMessage;
+	
+	
 
 	// action methods->
 	public ProductCatalouge loginApplication(String email, String password) {
@@ -45,6 +49,11 @@ public class LandingPage extends AbstractComponent {
 		ProductCatalouge productCatalouge = new ProductCatalouge(driver);
 		return productCatalouge;//because we are sure that after login we are going to productCataloguge page
 
+	}
+	
+	public String getErrorMessage() {
+		waitForWebElementToAppear(errorMessage);
+		return errorMessage.getText();
 	}
 
 	public void goTo() {

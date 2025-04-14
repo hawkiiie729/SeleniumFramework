@@ -1,4 +1,4 @@
-package landingPage.pageobjects;
+package myPersonalFramework.pageobjects;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import landingPage.AbstractComponents.AbstractComponent;
+import myPersonalFramework.AbstractComponents.AbstractComponent;
 
 //a page object should have only elements and action menthods ,no test data and assertions
 public class ProductCatalouge extends AbstractComponent {
