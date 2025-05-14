@@ -1,7 +1,7 @@
 package myPersonalFramework.tests;
 
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -10,14 +10,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import myPersonalFramework.TestComponents.BaseTest;
+import myPersonalFramework.TestComponents.Retry;
 import myPersonalFramework.pageobjects.CartPage;
-import myPersonalFramework.pageobjects.CheckoutPage;
-import myPersonalFramework.pageobjects.ConfirmationPage;
 import myPersonalFramework.pageobjects.ProductCatalouge;
 
 public class ErrorValidationsTest extends BaseTest {
 
-	@Test(groups= {"ErrorHandling"})
+	@Test(groups = { "ErrorHandling" }, retryAnalyzer = Retry.class) // to retry the test
 	public void LoginErrorValidation() throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		// use webdriver manager to invoke chromebrowser
@@ -25,7 +24,7 @@ public class ErrorValidationsTest extends BaseTest {
 
 		// encapsulating object creation in loginApplication method
 		landingPage.loginApplication("sudhanshu@gmail.com", "S9935759084");
-		Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
+		Assert.assertEquals("Incorrect email password.", landingPage.getErrorMessage());
 
 	}
 

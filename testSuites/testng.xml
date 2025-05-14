@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite parallel="tests" name="Suite"> <!--will run test cases paralley-->
+
+ <listeners>
+ <listener class-name="myPersonalFramework.TestComponents.Listeners"/>
+ 
+  </listeners>
+
   <test thread-count="5" name="Submit Order Test"> 
+ 
     <classes>
      
       <class name="myPersonalFramework.tests.submitOrderTest"/>
