@@ -17,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -43,7 +44,11 @@ public class BaseTest {
 		prop.load(fis);// this method will automatically parse the globaldata.properites file and
 						// extract all key value pairs from it
 
-		String browserName = prop.getProperty("browser");
+		String browserName = System.getProperty("browser") != null ? System.getProperty("browser")
+				: prop.getProperty("browser");// this is to read system level variable,used for maven commands from
+												// terminal
+
+//		 = prop.getProperty("browser");
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -55,6 +60,8 @@ public class BaseTest {
 			// Edge code
 			System.setProperty("webdriver.edge.driver", "edge.exe");
 			driver = new EdgeDriver();
+		} else if (browserName.equalsIgnoreCase("safari")) {
+			driver= new SafariDriver();
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
@@ -74,7 +81,7 @@ public class BaseTest {
 		return data;
 	}
 
-	public String getScreenshot(String testCaseName,WebDriver driver) throws IOException {
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		File file = new File(System.getProperty("user.dir") + "//reports" + testCaseName + ".png");
